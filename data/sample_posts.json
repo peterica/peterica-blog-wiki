@@ -1,0 +1,56 @@
+[
+  {
+    "id": "136",
+    "moc": "DevOps",
+    "title": "[JenKins] Plugin Dependency error 조치, Plugin수동 설치방법",
+    "year": "2022"
+  },
+  {
+    "id": "78",
+    "moc": "DevOps",
+    "title": "[Spring] Pinpoint 활용한 bootJar 실행 Shellscript 정리",
+    "year": "2021"
+  },
+  {
+    "id": "31",
+    "moc": "DevOps",
+    "title": "[APM] PinPoint APM",
+    "year": "2020"
+  },
+  {
+    "id": "183",
+    "moc": "Kubernetes",
+    "title": "[Kubernetes] Kubernetes환경에서 graceful shutdown이란",
+    "year": "2022"
+  },
+  {
+    "id": "492",
+    "moc": "Kubernetes",
+    "title": "인그레스(Ingress) 컨트롤러로 Minikube에서 인그레스 설정하기",
+    "year": "2024"
+  },
+  {
+    "id": "201",
+    "moc": "Kubernetes",
+    "title": "[k8s] EKS를 이용한 Kubernetes 구축, EKS 생성",
+    "year": "2022"
+  },
+  {
+    "id": "367",
+    "moc": "LLM",
+    "title": "[AI] ChatGPT를 Fine-tuning 한다는 것은?",
+    "year": "2023"
+  },
+  {
+    "id": "762",
+    "moc": "LLM",
+    "title": "[AI] 최근 대규모 언어 모델(LLM)의 급격한 성장 이유",
+    "year": "2024"
+  },
+  {
+    "id": "997",
+    "moc": "LLM",
+    "title": "[AI] RAG·Agent·Infra·Compliance를 동시에 다루는 엔지니어의 지식 정리법",
+    "year": "2025"
+  }
+]
