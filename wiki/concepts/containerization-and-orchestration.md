@@ -1,11 +1,11 @@
 ---
 type: concept
 title: "컨테이너화 및 오케스트레이션"
-parent: "[[MOC-DevOps]]"
-related: ["[[infrastructure-as-code]]", "[[devops-automation-practices]]"]
-tags: [devops, concept]
+parent: "[[MOC-Kubernetes]]"
+related: ["[[ci-cd-pipeline-design]]", "[[monitoring-and-observability]]"]
+tags: [kubernetes, concept]
 confidence: high
-post_count: 5
+post_count: 3
 ---
 
 # 컨테이너화 및 오케스트레이션
@@ -20,12 +20,10 @@ Docker, Kubernetes 등 도구를 사용해 애플리케이션을 독립적 환�
 블로그 저자는 Docker로 GNUBoard 설치, Kubernetes 기반 플랫폼 엔지니어링 등 컨테이너화 기술의 실무 적용 경험을 공유합니다.
 
 ## 관련 포스트
-- [[0611-php-Docker를-이용한-그누보드5-초간단-설치방법]]
-- [[0622-HeyForm-docker로-HeyForm-설치하기]]
-- [[0814-Docker-Uptime-Kuma-사용법]]
-- [[0978-AI-AI-시대-서버-관리자의-미래는-플랫폼-엔지니어-나아가자]]
-- [[1020-AI-Infra-메모리는-용량이-아니라-채널이다-Memory-bound-워크로드에서-놓치기-쉬운-서버-성능]]
+- [[0183-Kubernetes-Kubernetes환경에서-graceful-shutdown이란]]
+- [[0201-k8s-EKS를-이용한-Kubernetes-구축-EKS-생성]]
+- [[0492-인그레스-Ingress-컨트롤러로-Minikube에서-인그레스-설정하기]]
 
 ## 관련 개념
-- [[infrastructure-as-code]]
-- [[devops-automation-practices]]
+- [[ci-cd-pipeline-design]]
+- [[monitoring-and-observability]]

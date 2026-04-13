@@ -207,7 +207,7 @@ sh test.sh status
 
 <!-- wiki-links -->
 <!-- wiki-concepts -->
-**관련 개념**: [[devops-practices]]
+**관련 개념**: devops-practices
 
 ---
 

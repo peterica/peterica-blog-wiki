@@ -254,7 +254,7 @@ https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/getting-started-eksctl.ht
 
 <!-- wiki-links -->
 <!-- wiki-concepts -->
-**관련 개념**: [[eks]] · [[kubernetes]]
+**관련 개념**: eks · [[kubernetes]]
 
 ---
 

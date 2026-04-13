@@ -449,7 +449,7 @@ NGINX 인그레스(Ingress) 컨트롤러로 Minikube에서 인그레스 설
 
 <!-- wiki-links -->
 <!-- wiki-concepts -->
-**관련 개념**: [[kubernetes-networking-and-ingress]] · [[kubernetes-ingress-configuration]]
+**관련 개념**: kubernetes-networking-and-ingress · kubernetes-ingress-configuration
 
 
 ---

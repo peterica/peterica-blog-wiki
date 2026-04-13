@@ -2,10 +2,10 @@
 type: concept
 title: "CI/CD 파이프라인 설계"
 parent: "[[MOC-DevOps]]"
-related: ["[[infrastructure-as-code]]", "[[devops-automation-practices]]"]
+related: ["[[monitoring-and-observability]]", "[[containerization-and-orchestration]]"]
 tags: [devops, concept]
 confidence: high
-post_count: 5
+post_count: 2
 ---
 
 # CI/CD 파이프라인 설계
@@ -20,12 +20,9 @@ GitHub Actions, Jenkins, Bamboo 등의 도구를 활용해 개발 단계에서 �
 저자는 GitHub Actions에서 Node.js 버전 업그레이드 문제 해결, Jenkins Pipeline을 통한 주기적 쉘 스크립트 실행 등 CI/CD 프로세스 최적화 경험을 공유합니다.
 
 ## 관련 포스트
-- [[0716-Git-GitHub-Actions-노드-버전-문제-해결하기-node20-업그레이드-방법]]
-- [[0814-Docker-Uptime-Kuma-사용법]]
-- [[0861-Jenkins-pipeline에서-SSH-Agent를-이용한-원격서버-관리방법]]
-- [[0899-Jenkins-Jenkins-Pipeline으로-쉘-스크립트를-주기적으로-실행하기]]
-- [[0945-SRE-SRE-참고서로서-The-Art-of-Capacity-Planning]]
+- [[0078-Spring-Pinpoint-활용한-bootJar-실행-Shellscript-정리]]
+- [[0136-JenKins-Plugin-Dependency-error-조치-Plugin수동-설치방법]]
 
 ## 관련 개념
-- [[infrastructure-as-code]]
-- [[devops-automation-practices]]
+- [[monitoring-and-observability]]
+- [[containerization-and-orchestration]]

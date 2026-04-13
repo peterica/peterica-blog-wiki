@@ -116,7 +116,7 @@ State of AI Report 2022
 
 <!-- wiki-links -->
 <!-- wiki-concepts -->
-**관련 개념**: [[transformer-architecture-mechanism]] · [[ai-및-머신러닝-모델-튜닝]]
+**관련 개념**: transformer-architecture-mechanism · ai-및-머신러닝-모델-튜닝
 
 
 ---

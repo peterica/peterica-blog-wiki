@@ -3,10 +3,10 @@ type: entity
 title: "LLM"
 parent: "[[MOC-LLM]]"
 category: framework
-related: ["[[rag]]", "[[prompt-engineering]]", "[[transformer]]"]
+related: []
 tags: [llm, entity]
 confidence: high
-post_count: 1
+post_count: 3
 ---
 
 # LLM
@@ -18,12 +18,9 @@ post_count: 1
 블로그에서는 LLM의 배포, 파인튜닝, RAG와의 통합, AI 에이전트 구축 등 실제 적용 사례를 다룹니다. 특히 LLM의 성능 최적화와 리소스 관리 전략에 집중합니다.
 
 ## 관련 포스트
-- [[0162-AWS-S3-수명-주기-규칙-적용]]
+- [[0367-AI-ChatGPT를-Fine-tuning-한다는-것은]]
+- [[0762-AI-최근-대규모-언어-모델-LLM-의-급격한-성장-이유]]
+- [[0997-AI-RAG-Agent-Infra-Compliance를-동시에-다루는-엔지니어의-지식-정리법]]
 
 ## 관련 개념
-- [[rag]]
-- [[prompt-engineering]]
-- [[transformer]]
-
-<!-- wiki-concepts -->
-**관련 개념**: [[prompt-engineering]]
+_(이 샘플에서는 LLM 관련 concept가 포함되지 않았습니다)_

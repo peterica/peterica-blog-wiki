@@ -2,10 +2,10 @@
 type: concept
 title: "모니터링 및 관측 가능성"
 parent: "[[MOC-DevOps]]"
-related: ["[[site-reliability-engineering]]", "[[containerization-and-orchestration]]"]
+related: ["[[ci-cd-pipeline-design]]", "[[containerization-and-orchestration]]"]
 tags: [devops, concept]
 confidence: high
-post_count: 5
+post_count: 1
 ---
 
 # 모니터링 및 관측 가능성
@@ -20,12 +20,8 @@ Grafana, Uptime Kuma, Prometheus 등 도구를 사용해 시스템 성능, 장�
 블로그 저자는 k6를 활용한 부하 테스트 결과 시각화 및 SRE에서 SLI/SLO 기반 모니터링 구현 경험을 소개합니다.
 
 ## 관련 포스트
-- [[0814-Docker-Uptime-Kuma-사용법]]
-- [[0843-k6-k6를-이용한-다중-부하-테스트-설정-및-실행-방법]]
-- [[0938-SRE-실전에서-배우는-SLI-CloudWatch와-Grafana로-신뢰성-확보하기]]
-- [[0946-SRE-SRE-모니터링-방법론-USE-Method-RED-Method-Four-Golden-Signals-정]]
-- [[0978-AI-AI-시대-서버-관리자의-미래는-플랫폼-엔지니어-나아가자]]
+- [[0031-APM-PinPoint-APM]]
 
 ## 관련 개념
-- [[site-reliability-engineering]]
+- [[ci-cd-pipeline-design]]
 - [[containerization-and-orchestration]]

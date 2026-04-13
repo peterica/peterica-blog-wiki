@@ -1,30 +1,27 @@
-# Peterica Knowledge Wiki
+# Knowledge Wiki (Sample)
 
-> 989개 블로그 포스트에서 추출한 개발 지식 체계
+> 이 vault는 Blog Wiki Builder 파이프라인의 **샘플 산출물**입니다.
+> 전체 987개 포스트 중 3개 MOC x 3개 포스트 = 9개를 포함합니다.
 
 ## 지식 지도
 
-- [[MOC-Cloud|Cloud]] — 9개 개념/기술
-- [[MOC-Database|Database]] — 10개 개념/기술
-- [[MOC-DevOps|DevOps]] — 23개 개념/기술
-- [[MOC-Kubernetes|Kubernetes]] — 20개 개념/기술
-- [[MOC-LLM|LLM]] — 19개 개념/기술
-- [[MOC-Life|Life]] — 11개 개념/기술
-- [[MOC-Linux-Network|Linux-Network]] — 15개 개념/기술
-- [[MOC-Programming|Programming]] — 24개 개념/기술
-- [[MOC-Security|Security]] — 18개 개념/기술
-- [[MOC-Spring-Kotlin|Spring-Kotlin]] — 11개 개념/기술
-- [[MOC-Tools|Tools]] — 10개 개념/기술
-- [[MOC-Web|Web]] — 11개 개념/기술
+- [[MOC-DevOps|DevOps]] -- CI/CD, 배포, 모니터링
+- [[MOC-Kubernetes|Kubernetes]] -- 컨테이너 오케스트레이션
+- [[MOC-LLM|LLM]] -- 대규모 언어 모델, AI 활용
 
 ## 통계
 
-- MOC: 12개
-- Concept: 120개
-- Entity: 61개
-- Post: 989개
+- MOC: 3개
+- Concept: 3개
+- Entity: 2개
+- Post: 9개
 
-## 탐색
+## 위키 4계층
 
-- [[INDEX|블로그 전체 목차]]
-- [[INDEX_BY_TAG|태그별 색인]]
+```
+_index.md (이 파일)
+  └── MOC (카테고리 진입점)
+        └── Concept (여러 글에서 합성한 지식)
+        └── Entity (기술/도구 정의)
+              └── Post (블로그 원본)
+```

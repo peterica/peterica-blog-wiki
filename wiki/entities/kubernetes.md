@@ -3,10 +3,10 @@ type: entity
 title: "Kubernetes"
 parent: "[[MOC-Kubernetes]]"
 category: platform
-related: ["[[kubectl]]", "[[metrics-server]]", "[[ingress]]", "[[pod]]", "[[cluster-management]]"]
+related: ["[[containerization-and-orchestration]]"]
 tags: [kubernetes, entity]
 confidence: high
-post_count: 7
+post_count: 3
 ---
 
 # Kubernetes
@@ -19,16 +19,8 @@ post_count: 7
 
 ## 관련 포스트
 - [[0183-Kubernetes-Kubernetes환경에서-graceful-shutdown이란]]
-- [[0184-Kubernetes-Pod의-종료-사이클과-Graceful-Shutdown]]
-- [[0192-Kubernetes-클러스터-설치방법-with-Play-with-Kubernetes]]
 - [[0201-k8s-EKS를-이용한-Kubernetes-구축-EKS-생성]]
-- [[0222-kubernetes-node와-pod의-CPU-메모리-확인-방법]]
-- [[0260-EKS-eksctl-자주사용-명령어]]
-- [[0261-EKS-쿠버네티스-etcd-클러스터-백업-1-ETCD란-백업과-복원을-위한-2가지-방법]]
+- [[0492-인그레스-Ingress-컨트롤러로-Minikube에서-인그레스-설정하기]]
 
 ## 관련 개념
-- [[kubectl]]
-- [[metrics-server]]
-- [[ingress]]
-- [[pod]]
-- [[cluster-management]]
+- [[containerization-and-orchestration]]

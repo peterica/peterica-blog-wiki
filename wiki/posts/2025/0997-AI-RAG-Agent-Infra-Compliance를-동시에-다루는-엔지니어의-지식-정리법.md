@@ -301,7 +301,7 @@ AI 시스템 엔지니어로 성장하고 싶은 사람들에게
 
 <!-- wiki-links -->
 <!-- wiki-concepts -->
-**관련 개념**: [[rag-system-architecture]] · [[context-engineering-agent-management]]
+**관련 개념**: rag-system-architecture · context-engineering-agent-management
 
 
 ---

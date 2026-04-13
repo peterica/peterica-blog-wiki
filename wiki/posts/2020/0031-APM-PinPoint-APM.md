@@ -239,7 +239,7 @@ RESTful은 Spring의 doFilter를 이용하여
 
 <!-- wiki-links -->
 <!-- wiki-concepts -->
-**관련 개념**: [[apm-tools]] · [[devops-practices]]
+**관련 개념**: apm-tools · devops-practices
 
 ---
 
