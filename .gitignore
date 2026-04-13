@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Data (대량 데이터는 커밋하지 않음)
+data/shards/*.raw.jsonl
+data/shards/*.jsonl
+data/shards/*.txt
+data/posts.jsonl
+data/posts_wiki.jsonl
+
+# Obsidian workspace (개인 설정)
+wiki/.obsidian/workspace.json
+wiki/.obsidian/workspace-mobile.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/

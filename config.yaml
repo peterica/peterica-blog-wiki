@@ -1,0 +1,128 @@
+# ============================================================
+# Blog Wiki Builder — Configuration
+# ============================================================
+# 이 파일의 값을 수정하여 자신의 블로그에 적용하세요.
+# 모든 스크립트는 이 설정 파일을 읽어 동작합니다.
+
+# --- 블로그 소스 ---
+blog:
+  url: "https://peterica.tistory.com"       # 블로그 루트 URL
+  name: "Peterica Blog"                      # 블로그 이름
+  platform: "tistory"                        # tistory | wordpress | rss
+  user_agent: "blog-wiki-builder/0.1 (+local research)"
+
+# --- 스크래핑 ---
+scrape:
+  rate_limit: 1.0          # 요청 간격 (초). robots.txt 준수
+  timeout: 15.0            # HTTP 타임아웃 (초)
+  retries: 3               # 실패 시 재시도 횟수
+  # URL에서 포스트 ID를 추출하는 정규식. 첫 번째 그룹이 ID.
+  url_pattern: "^https://peterica\\.tistory\\.com/(\\d+)$"
+  # HTML 파싱 셀렉터 (위에서부터 순서대로 시도, 첫 매칭 사용)
+  selectors:
+    title:
+      - 'meta[property="og:title"]'
+      - "h1.tit_post"
+      - ".article-header h1"
+      - "h1"
+    date:
+      - 'meta[property="article:published_time"]'
+      - "time[datetime]"
+      - "span.date"
+    body:
+      - ".tt_article_useless_p_margin"
+      - ".entry-content"
+      - "article .article_view"
+      - ".contents_style"
+      - "article"
+    category:
+      - "meta[property='article:section']"
+      - ".category"
+      - ".breadcrumb"
+
+# --- LLM ---
+llm:
+  # provider: ollama (로컬 무료) | openai | anthropic
+  provider: "ollama"
+  model: "qwen3:8b"
+  # Ollama 설정 (provider=ollama 일 때)
+  ollama_url: "http://localhost:11434/api/generate"
+  ollama_timeout: 300      # 초 (큰 배치 대비)
+  # OpenAI 설정 (provider=openai 일 때)
+  # openai_api_key: env:OPENAI_API_KEY
+  # openai_model: "gpt-4o-mini"
+  # Anthropic 설정 (provider=anthropic 일 때)
+  # anthropic_api_key: env:ANTHROPIC_API_KEY
+  # anthropic_model: "claude-sonnet-4-20250514"
+  max_body_chars: 6000     # 프롬프트에 포함할 본문 최대 길이
+
+# --- 배치 처리 ---
+batch:
+  shard_size: 50           # URL 배치 크기
+  max_posts_per_batch: 60  # LLM에 한 번에 넘길 최대 포스트 수
+  parallel: 2              # 병렬 shard 처리 수
+
+# --- 위키 구조 ---
+wiki:
+  output_dir: "wiki"       # Obsidian vault 출력 디렉토리
+  # 카테고리 → MOC 매핑. 키=카테고리명, 값=MOC명.
+  # 매핑에 없는 카테고리는 fallback_moc으로 분류.
+  fallback_moc: "Life"
+  moc_map:
+    # --- DevOps ---
+    DevOps: DevOps
+    Jenkins: DevOps
+    Git: DevOps
+    # --- Kubernetes ---
+    Kubernetes: Kubernetes
+    Docker: Kubernetes
+    # --- Cloud ---
+    Cloud: Cloud
+    # --- AI/LLM ---
+    LLM: LLM
+    # --- Programming ---
+    Programming: Programming
+    Java: Programming
+    Go: Programming
+    # --- Spring-Kotlin ---
+    Spring: Spring-Kotlin
+    Kotlin: Spring-Kotlin
+    # --- Database ---
+    Database: Database
+    Redis: Database
+    Elasticsearch: Database
+    # --- Web ---
+    Web: Web
+    # --- Linux/Network ---
+    Linux: Linux-Network
+    Networking: Linux-Network
+    # --- Security ---
+    Security: Security
+    # --- Tools ---
+    Tools: Tools
+    # --- Life ---
+    Life: Life
+  # MOC 아이콘
+  moc_icons:
+    DevOps: "\U0001F527"
+    Kubernetes: "\u2638\uFE0F"
+    Cloud: "\u2601\uFE0F"
+    LLM: "\U0001F916"
+    Programming: "\U0001F4BB"
+    Spring-Kotlin: "\U0001F343"
+    Database: "\U0001F5C4\uFE0F"
+    Web: "\U0001F310"
+    Linux-Network: "\U0001F427"
+    Security: "\U0001F512"
+    Tools: "\U0001F6E0\uFE0F"
+    Life: "\U0001F331"
+
+# --- 품질 기준 (Rubric) ---
+quality:
+  summary_min_length: 120  # 요약 최소 글자수
+  summary_max_length: 500  # 요약 최대 글자수
+  summary_min_sentences: 2
+  summary_max_sentences: 6
+  tag_count_min: 3
+  tag_count_max: 7
+  pass_rate_threshold: 98.0  # 전체 PASS 기준 (%)
