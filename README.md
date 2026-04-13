@@ -1,7 +1,4 @@
 # Blog Wiki Builder
-
-**블로그 글을 Obsidian 지식 위키로 변환하는 LLM 파이프라인**
-
 ![Obsidian Graph View](assets/obsidian_graph.png)
 
 ## 문제
@@ -148,6 +145,8 @@ blog-wiki-builder/
 - [06-obsidian.md](docs/06-obsidian.md) — Obsidian 설정
 
 ## 기술 스택
+**블로그 글을 Obsidian 지식 위키로 변환하는 LLM 파이프라인**
+![Architecture](assets/architecture.png)
 
 - Python (httpx, selectolax) — 스크래핑/파이프라인
 - Ollama + qwen3:8b — 로컬 LLM (무료)

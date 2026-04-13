@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Wiki Builder - Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    width: 800px;
+    background: #FAFAFA;
+    padding: 10px 20px 24px;
+    position: relative;
+  }
+
+  /* ===== Circular Workflow ===== */
+  .workflow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    position: relative;
+    height: 180px;
+  }
+
+  .workflow-ring {
+    position: relative;
+    width: 540px;
+    height: 180px;
+  }
+
+  .workflow-step {
+    position: absolute;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4A5568;
+    white-space: nowrap;
+  }
+
+  /* Positions around the ellipse — matching OmegaWiki layout */
+  .step-discover   { top: 4px;   left: 60px; }
+  .step-scrape     { top: -10px; left: 50%; transform: translateX(-50%); }
+  .step-summarize  { top: 4px;   right: 40px; }
+  .step-categorize { top: 50%;   right: -40px; transform: translateY(-50%); }
+  .step-build      { bottom: 4px; right: 60px; }
+  .step-crosslink  { bottom: -10px; left: 50%; transform: translateX(-50%); }
+  .step-evaluate   { top: 50%;   left: -30px; transform: translateY(-50%); }
+
+  /* Elliptical arrows using SVG */
+  .workflow-arrows {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px;
+    height: 160px;
+  }
+
+  /* ===== Main Layout ===== */
+  .main-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* ===== Sources & Outputs ===== */
+  .side-panel {
+    width: 130px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .side-panel h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2D3748;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #CBD5E0;
+  }
+
+  .side-panel ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .side-panel li {
+    font-size: 12.5px;
+    color: #718096;
+    line-height: 1.9;
+  }
+
+  .side-panel.outputs li::before {
+    content: "▸ ";
+    color: #A0AEC0;
+  }
+
+  /* ===== Arrow Connectors ===== */
+  .arrow-connector {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .arrow-connector svg {
+    width: 50px;
+    height: 20px;
+  }
+
+  /* ===== Central Box ===== */
+  .central-box {
+    width: 370px;
+    background: white;
+    border: 2.5px solid #C53030;
+    border-radius: 16px;
+    padding: 20px 22px 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+
+  .central-title {
+    text-align: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  .central-title h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A202C;
+  }
+
+  .central-title .accent {
+    color: #C53030;
+    font-size: 26px;
+    font-weight: 800;
+    margin-right: 4px;
+  }
+
+  /* ===== Grid Items ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px 4px;
+    margin-bottom: 14px;
+  }
+
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+
+  .grid-item:hover {
+    background: #F7FAFC;
+  }
+
+  .grid-item .emoji {
+    font-size: 22px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-item .label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #2D3748;
+  }
+
+  /* ===== Tagline ===== */
+  .tagline {
+    text-align: center;
+    font-size: 11.5px;
+    color: #718096;
+    font-style: italic;
+    letter-spacing: 0.3px;
+  }
+
+  .tagline span {
+    margin: 0 6px;
+    color: #CBD5E0;
+  }
+
+  /* ===== LLM Badge ===== */
+  .llm-badge {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .llm-badge .badge {
+    background: #EDF2F7;
+    border: 1px solid #CBD5E0;
+    border-radius: 20px;
+    padding: 5px 18px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #4A5568;
+  }
+
+  /* ===== Quote ===== */
+  .quote {
+    margin-top: 20px;
+    background: #F7FAFC;
+    border-radius: 8px;
+    padding: 12px 24px;
+    text-align: center;
+  }
+
+  .quote p {
+    font-size: 11px;
+    color: #A0AEC0;
+    font-style: italic;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Circular Workflow -->
+  <div class="workflow">
+    <div class="workflow-ring">
+      <div class="workflow-step step-discover">Discover</div>
+      <div class="workflow-step step-scrape">Scrape</div>
+      <div class="workflow-step step-summarize">Summarize</div>
+      <div class="workflow-step step-categorize">Categorize</div>
+      <div class="workflow-step step-build">Build</div>
+      <div class="workflow-step step-crosslink">Crosslink</div>
+      <div class="workflow-step step-evaluate">Evaluate</div>
+
+      <!-- Elliptical arrow path -->
+      <svg class="workflow-arrows" viewBox="0 0 480 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#4A5568"/>
+          </marker>
+        </defs>
+        <!-- Top arc: Discover → Scrape → Summarize -->
+        <path d="M 80,65 C 80,18 400,18 400,65" stroke="#4A5568" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+        <!-- Right arc: Summarize → Categorize -->
+        <path d="M 408,72 C 450,85 450,125 408,140" stroke="#4A5568" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+        <!-- Bottom arc: Build → Crosslink → Evaluate -->
+        <path d="M 400,148 C 400,185 80,185 80,148" stroke="#4A5568" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+        <!-- Left arc: Evaluate → Discover -->
+        <path d="M 72,140 C 30,125 30,85 72,72" stroke="#4A5568" stroke-width="1.8" marker-end="url(#arrowhead)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Main Row: Sources → Central → Outputs -->
+  <div class="main-row">
+
+    <!-- Sources -->
+    <div class="side-panel sources">
+      <h3>Sources</h3>
+      <ul>
+        <li>Tistory Blog</li>
+        <li>987 Posts</li>
+        <li>HTML</li>
+        <li>Sitemap</li>
+        <li>Categories</li>
+      </ul>
+    </div>
+
+    <!-- Arrow → -->
+    <div class="arrow-connector">
+      <svg viewBox="0 0 50 20">
+        <defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#4A5568"/></marker></defs>
+        <line x1="0" y1="10" x2="42" y2="10" stroke="#4A5568" stroke-width="2" marker-end="url(#arr1)"/>
+      </svg>
+    </div>
+
+    <!-- Central Box -->
+    <div class="central-box">
+      <div class="central-title">
+        <h2><span class="accent">B</span>log Wiki Builder</h2>
+      </div>
+
+      <div class="grid">
+        <div class="grid-item"><span class="emoji">🗺️</span><span class="label">MOC</span></div>
+        <div class="grid-item"><span class="emoji">💡</span><span class="label">Concepts</span></div>
+        <div class="grid-item"><span class="emoji">🔧</span><span class="label">Entities</span></div>
+        <div class="grid-item"><span class="emoji">📄</span><span class="label">Posts</span></div>
+        <div class="grid-item"><span class="emoji">🏷️</span><span class="label">Tags</span></div>
+        <div class="grid-item"><span class="emoji">🔗</span><span class="label">WikiLinks</span></div>
+        <div class="grid-item"><span class="emoji">📊</span><span class="label">Summaries</span></div>
+        <div class="grid-item"><span class="emoji">🕸️</span><span class="label">Graph</span></div>
+      </div>
+
+      <div class="tagline">
+        Knowledge Graph<span>·</span>Compounding<span>·</span>Never Decays
+      </div>
+    </div>
+
+    <!-- Arrow → -->
+    <div class="arrow-connector">
+      <svg viewBox="0 0 50 20">
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#4A5568"/></marker></defs>
+        <line x1="0" y1="10" x2="42" y2="10" stroke="#4A5568" stroke-width="2" marker-end="url(#arr2)"/>
+      </svg>
+    </div>
+
+    <!-- Outputs -->
+    <div class="side-panel outputs">
+      <h3>Outputs</h3>
+      <ul>
+        <li>Obsidian Vault</li>
+        <li>Knowledge Graph</li>
+        <li>MOC Pages</li>
+        <li>Quality Report</li>
+        <li>Cross-links</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- LLM Badge -->
+  <div class="llm-badge">
+    <div class="badge">🤖 qwen3:8b (Local LLM)</div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote">
+    <p>"Inspired by Karpathy's LLM-Wiki: knowledge compiled once, maintained forever — not rediscovered on every query."</p>
+  </div>
+
+</div>
+
+</body>
+</html>
